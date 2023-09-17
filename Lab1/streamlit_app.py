@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 # Load the trained model
-model = joblib.load('model/clf_svm.joblib')
+model = joblib.load('clf_svm.joblib')
 
 def main():
     st.title("Seed Type Prediction")
