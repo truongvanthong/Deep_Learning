@@ -4,8 +4,15 @@ import numpy as np
 import pandas as pd
 
 # Load the trained model
-model = joblib.load('clf_svm.joblib')
-
+model = None
+try:
+    with open('clf_svm.joblib', 'rb') as f:
+        model = joblib.load(f)
+except FileNotFoundError:
+    print("Tệp 'clf_svm.joblib' không tồn tại.")
+except Exception as e:
+    print(f"Lỗi khi tải mô hình: {e}")
+    
 def main():
     st.title("Seed Type Prediction")
 
