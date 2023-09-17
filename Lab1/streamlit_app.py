@@ -9,9 +9,9 @@ try:
     with open('clf_svm.joblib', 'rb') as f:
         model = joblib.load(f)
 except FileNotFoundError:
-    print("Tệp 'clf_svm.joblib' không tồn tại.")
+    st.write("Tệp 'clf_svm.joblib' không tồn tại.")
 except Exception as e:
-    print(f"Lỗi khi tải mô hình: {e}")
+    st.write(f"Lỗi khi tải mô hình: {e}")
     
 def main():
     st.title("Seed Type Prediction")
@@ -22,6 +22,10 @@ def main():
 
     # Predict button
     if st.button("Predict"):
+        if model is None:
+            st.write("Mô hình không được tải thành công.")
+            return
+
         data = [inputs[feature] for feature in columns_names]
         result = model.predict([data])
         st.write(f"Predicted seed type: {result[0] + 1}")
